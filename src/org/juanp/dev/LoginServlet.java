@@ -2,6 +2,7 @@ package org.juanp.dev;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -34,8 +35,9 @@ public class LoginServlet extends HttpServlet {
 		//redirecting process
 		if(result) {
 			User user = loginService.getUserDetails(userId);
-			request.getSession().setAttribute("user", user);
-			response.sendRedirect("success.jsp");
+			request.setAttribute("user", user);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("success.jsp");
+			dispatcher.forward(request, response);
 			return; 
 		} else {
 			response.sendRedirect("login.jsp");

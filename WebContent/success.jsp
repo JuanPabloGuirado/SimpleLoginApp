@@ -10,9 +10,10 @@
 
 <h2>Your login was successful!</h2>
 
-<%User user = (User) session.getAttribute("user"); %>
+<jsp:useBean id="user" class="org.juanp.dev.dto.User" scope="request">
+</jsp:useBean>
 
-Hello <%=user.getUserName() %>!
+Hello <jsp:getProperty property="userName" name="user"/>!
 
 </body>
 </html>
